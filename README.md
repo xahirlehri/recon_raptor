@@ -23,6 +23,6 @@ This tool is for **educational and authorized use only**.
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/reconraptor.git
+git clone https://github.com/xahirlehri/reconraptor.git
 cd recon_raptor
 pip install -r requirements.txt
