@@ -11,6 +11,9 @@
 - ✅ CMS Fingerprinting (WordPress, Joomla, Drupal, etc.)
 - ✅ CVE references for identified technologies
 
+![image](https://github.com/user-attachments/assets/e0aa2d08-e4ab-4f72-b8e8-1ce152811ac9)
+
+
 ---
 
 ## ⚠️ Ethical Notice
