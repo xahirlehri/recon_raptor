@@ -117,7 +117,6 @@ def scan_vulnerabilities(base_url, discovered_pages):
 
     for url, _ in track(discovered_pages, description="Scanning for vulns..."):
         try:
-            # XSS and SQLi
             xss_url = inject_param(url, test_params["xss"])
             sqli_url = inject_param(url, test_params["sqli"])
 
@@ -130,18 +129,15 @@ def scan_vulnerabilities(base_url, discovered_pages):
             if "sql" in sqli_response.text.lower() or "syntax" in sqli_response.text.lower():
                 vulnerabilities["SQL Injection"].append(sqli_url)
 
-            # Open Redirect
             if any(k in url.lower() for k in ["redirect", "url="]):
                 redirect_test_url = inject_param(url, "http://evil.com")
                 response = requests.get(redirect_test_url, allow_redirects=False)
                 if "evil.com" in response.headers.get("Location", ""):
                     vulnerabilities["Open Redirects"].append(redirect_test_url)
 
-            # Admin page detection
             if any(k in url.lower() for k in ["admin", "login", "dashboard"]):
                 vulnerabilities["Exposed Admin Panels"].append(url)
 
-            # Headers check
             response = requests.get(url, timeout=5)
             headers = response.headers
             for header in ["X-Frame-Options", "X-XSS-Protection", "Content-Security-Policy", "Strict-Transport-Security"]:
@@ -187,7 +183,7 @@ def export_results(domain, pages, technologies, vulnerabilities=None):
     txt_path = f"scan_results/{safe_domain}_scan.txt"
     json_path = f"scan_results/{safe_domain}_scan.json"
 
-    with open(txt_path, "w") as f_txt, open(json_path, "w") as f_json:
+    with open(txt_path, "w", encoding="utf-8") as f_txt, open(json_path, "w", encoding="utf-8") as f_json:
         f_txt.write("Website Scan Report\n")
         f_txt.write(f"Target: {domain}\n\nDiscovered Pages:\n")
         for url, _ in pages:
@@ -205,7 +201,7 @@ def export_results(domain, pages, technologies, vulnerabilities=None):
                         f_txt.write(f"- {key}: {v}\n")
                 elif isinstance(value, dict):
                     for h, s in value.items():
-                        f_txt.write(f"- {key} → {h}: {s}\n")
+                        f_txt.write(f"- {key} -> {h}: {s}\n")
                 else:
                     f_txt.write(f"- {key}: {value}\n")
 
