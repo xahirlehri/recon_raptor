@@ -1,2 +1,21 @@
-# recon_raptor
-🦖 ReconRaptor is a Python-based web reconnaissance and vulnerability scanner. It crawls websites, detects technologies (like WordPress, Joomla), and identifies common security issues like XSS, SQLi, open redirects, and missing security headers. Ideal for ethical hacking, bug bounty, and security research.
+# 🦖 ReconRaptor — Web Reconnaissance & Vulnerability Scanner
+
+**ReconRaptor** is a powerful and lightweight web reconnaissance tool built in Python. It crawls target websites, detects the underlying technologies, and scans for common security vulnerabilities such as:
+
+- ✅ Cross-site Scripting (XSS)
+- ✅ SQL Injection (SQLi)
+- ✅ Open Redirects
+- ✅ Clickjacking
+- ✅ Missing Security Headers
+- ✅ Admin Panel Exposure
+- ✅ CMS Fingerprinting (WordPress, Joomla, Drupal, etc.)
+- ✅ CVE references for identified technologies
+
+---
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/xahirlehri/reconraptor.git
+cd reconraptor
+pip install -r requirements.txt
